@@ -87,7 +87,7 @@ export function ChatMessage({ message, isStreaming }: Props) {
                 {reasoningParts.map((part, i) => {
                   const reasoningText =
                     part.details
-                      ?.map((detail: { type: string; text: string }) =>
+                      ?.map((detail) =>
                         detail.type === "text" ? detail.text : ""
                       )
                       .filter(Boolean)
