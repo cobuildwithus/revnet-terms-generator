@@ -2,7 +2,10 @@
 
 import { Analysis } from "@/app/analyzer/analyze";
 import { Button } from "@/components/ui/button";
-import { ChatContainerContent, ChatContainerRoot } from "@/components/ui/chat-container";
+import {
+  ChatContainerContent,
+  ChatContainerRoot,
+} from "@/components/ui/chat-container";
 import { Loader } from "@/components/ui/loader";
 import {
   PromptInput,
@@ -59,8 +62,10 @@ export function ChatPanel(props: ChatPanelProps) {
             className="rounded-full object-cover size-10 aspect-square"
           />
           <div>
-            <h2 className="text-xl font-bold">AI Assistant</h2>
-            <p className="text-sm text-muted-foreground">Ask questions and modify your terms</p>
+            <h2 className="text-xl font-bold">Revnet Wizard</h2>
+            <p className="text-sm text-muted-foreground">
+              Ask questions and modify your terms
+            </p>
           </div>
         </div>
       </div>
@@ -72,7 +77,9 @@ export function ChatPanel(props: ChatPanelProps) {
               <ChatMessage
                 key={message.id}
                 message={message}
-                isStreaming={status === "streaming" && i === messages.length - 1}
+                isStreaming={
+                  status === "streaming" && i === messages.length - 1
+                }
               />
             ))}
           </ChatContainerContent>
@@ -95,7 +102,11 @@ export function ChatPanel(props: ChatPanelProps) {
             placeholder="Ask about your terms or request changes..."
           />
           <PromptInputActions className="justify-end pt-2">
-            <PromptInputAction tooltip={status === "streaming" ? "Please wait..." : "Send message"}>
+            <PromptInputAction
+              tooltip={
+                status === "streaming" ? "Please wait..." : "Send message"
+              }
+            >
               <Button
                 variant="default"
                 size="icon"

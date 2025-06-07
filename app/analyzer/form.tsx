@@ -6,14 +6,48 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useRouter } from "next/navigation";
 import type React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import { analyzeProject } from "./analyze";
 
 export function AnalyzeForm() {
   const [description, setDescription] = useState("");
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [buttonText, setButtonText] = useState("Let's go!");
   const router = useRouter();
+
+  useEffect(() => {
+    if (!isAnalyzing) return;
+
+    const loadingMessages = [
+      "Searching the web...",
+      "Doing market research...",
+      "Analyzing economics...",
+      "Studying tokenomics models...",
+      "Evaluating project goals...",
+      "Reviewing best practices...",
+      "Calculating optimal parameters...",
+      "Finalizing recommendations...",
+    ];
+
+    let messageIndex = 0;
+    let timeoutId: NodeJS.Timeout;
+    setButtonText(loadingMessages[0]);
+
+    const rotateMessage = () => {
+      messageIndex = (messageIndex + 1) % loadingMessages.length;
+      setButtonText(loadingMessages[messageIndex]);
+
+      // Random interval between 1.5 and 3.5 seconds
+      const randomDelay = Math.random() * 2000 + 1500;
+      timeoutId = setTimeout(rotateMessage, randomDelay);
+    };
+
+    // Start with a random delay for the first change
+    timeoutId = setTimeout(rotateMessage, Math.random() * 2000 + 1500);
+
+    return () => clearTimeout(timeoutId);
+  }, [isAnalyzing]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,6 +68,7 @@ export function AnalyzeForm() {
       toast.error("Error. Please try again.", { id: toastId });
     } finally {
       setIsAnalyzing(false);
+      setButtonText("Let's go!");
     }
   };
 
@@ -59,7 +94,7 @@ export function AnalyzeForm() {
             className="w-full"
             disabled={!description.trim() || isAnalyzing}
           >
-            {isAnalyzing ? "Analyzing your project..." : "Let's go!"}
+            {buttonText}
           </Button>
         </form>
       </CardContent>

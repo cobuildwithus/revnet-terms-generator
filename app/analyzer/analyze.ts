@@ -15,7 +15,9 @@ export type Analysis = {
   error: string | null;
 };
 
-export async function analyzeProject(userDescription: string): Promise<Analysis> {
+export async function analyzeProject(
+  userDescription: string
+): Promise<Analysis> {
   try {
     const { text, usage, providerMetadata } = await generateText({
       model: openai("o4-mini"),
@@ -57,7 +59,9 @@ export async function analyzeProject(userDescription: string): Promise<Analysis>
         } satisfies OpenAIResponsesProviderOptions,
       },
       tools: {
-        web_search_preview: openai.tools.webSearchPreview({ searchContextSize: "high" }),
+        web_search_preview: openai.tools.webSearchPreview({
+          searchContextSize: "high",
+        }),
       },
     });
 
@@ -69,7 +73,7 @@ export async function analyzeProject(userDescription: string): Promise<Analysis>
     if (!text) throw new Error("No analysis generated");
 
     const { object } = await generateObject({
-      model: openai("gpt-4-turbo"),
+      model: openai.responses("gpt-4.1-2025-04-14"),
       system: `You'll be getting the text with analysis summary and list of questions.
 
       - Analysis summary will be wrapped in <analysis> tags.
@@ -95,7 +99,8 @@ export async function analyzeProject(userDescription: string): Promise<Analysis>
   } catch (error) {
     console.error("Error analyzing project", error);
     return {
-      error: error instanceof Error ? error.message : "Failed to analyze project",
+      error:
+        error instanceof Error ? error.message : "Failed to analyze project",
       summary: "",
       questions: [],
       initialMessage: "",

@@ -18,16 +18,15 @@ export default function HomePage() {
         <div className="text-center">
           <div className="inline-flex items-center bg-secondary/75 text-secondary-foreground px-4 py-2 rounded-full text-sm font-medium">
             <SparklesIcon className="mr-2 text-yellow-500" size={16} />
-            AI Generator
+            o4 powered
           </div>
 
           <h1 className="mt-6 text-5xl sm:text-6xl font-bold mb-6 text-balance">
-            Generate your <span className="text-primary">revnet</span> terms in minutes
+            Launch your <span className="text-primary">revnet</span> in minutes
           </h1>
 
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-pretty leading-relaxed">
-            Describe your project and let our tool generate optimal tokenomics terms. Get revnet
-            terms without the complexity.
+            We help you launch a revnet with the best setup possible.
           </p>
         </div>
 
