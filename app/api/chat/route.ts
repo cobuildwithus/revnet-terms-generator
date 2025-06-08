@@ -9,19 +9,21 @@ export const maxDuration = 30;
 const openai = createOpenAI({ compatibility: "strict" });
 
 export async function POST(req: Request) {
-  const data = await req.json();
-  const { messages, terms } = data;
+  try {
+    const data = await req.json();
+    const { messages, terms } = data;
 
-  const analysis: Analysis = data.analysis;
-  if (!analysis || !analysis.summary) throw new Error("Incorrect input params");
+    const analysis: Analysis = data.analysis;
+    if (!analysis || !analysis.summary)
+      throw new Error("Incorrect input params");
 
-  const result = streamText({
-    model: openai.responses("o4-mini"),
-    messages: [
-      { role: "system", content: aboutRevnetPrompt },
-      {
-        role: "system",
-        content: `You're in conversation with user whom are you helping with their revnet terms.
+    const result = streamText({
+      model: openai.responses("o3"),
+      messages: [
+        { role: "system", content: aboutRevnetPrompt },
+        {
+          role: "system",
+          content: `You're in conversation with user whom are you helping with their revnet terms.
         
         ## Data
         This is how user described their project:
@@ -55,26 +57,33 @@ export async function POST(req: Request) {
         
         User see current terms in the chat, every time you update the terms, user will see the updated values.
         `,
-      },
-      ...messages,
-    ],
-    tools: {
-      updateTerms: tool({
-        description: "Update the revnet terms",
-        parameters: revnetTermsSchema,
-        execute: async (terms) => {
-          return terms;
         },
-      }),
-    },
-    providerOptions: {
-      openai: {
-        reasoningEffort: "high",
-        reasoningSummary: "auto",
-      } satisfies OpenAIResponsesProviderOptions,
-    },
-    toolCallStreaming: true,
-  });
+        ...messages,
+      ],
+      tools: {
+        updateTerms: tool({
+          description: "Update the revnet terms",
+          parameters: revnetTermsSchema,
+          execute: async (terms) => {
+            return terms;
+          },
+        }),
+      },
+      providerOptions: {
+        openai: {
+          reasoningEffort: "high",
+          reasoningSummary: "auto",
+        } satisfies OpenAIResponsesProviderOptions,
+      },
+      toolCallStreaming: true,
+    });
 
-  return result.toDataStreamResponse({ sendReasoning: true });
+    return result.toDataStreamResponse({ sendReasoning: true });
+  } catch (error) {
+    console.error("Error in chat API:", error);
+    return new Response(JSON.stringify({ error: "Internal server error" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
 }

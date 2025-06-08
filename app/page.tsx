@@ -18,7 +18,7 @@ export default function HomePage() {
         <div className="text-center">
           <div className="inline-flex items-center bg-secondary/75 text-secondary-foreground px-4 py-2 rounded-full text-sm font-medium">
             <SparklesIcon className="mr-2 text-yellow-500" size={16} />
-            o4 powered
+            o3 powered
           </div>
 
           <h1 className="mt-6 text-5xl sm:text-6xl font-bold mb-6 text-balance">
@@ -26,7 +26,7 @@ export default function HomePage() {
           </h1>
 
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-pretty leading-relaxed">
-            We help you launch a revnet with the best setup possible.
+            We help you launch a revnet with the best terms possible.
           </p>
         </div>
 

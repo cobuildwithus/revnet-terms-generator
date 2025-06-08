@@ -20,7 +20,7 @@ export async function analyzeProject(
 ): Promise<Analysis> {
   try {
     const { text, usage, providerMetadata } = await generateText({
-      model: openai("o4-mini"),
+      model: openai("o3"),
       system: aboutRevnetPrompt,
       prompt: `
       Here is the project's description from the user:
@@ -65,9 +65,19 @@ export async function analyzeProject(
       - **Comparables**: Similar projects using tokens/crowdfunding and their patterns
       - **Why Revnet**: How a revnet could align these parties better than status-quo
 
+      Cite all your sources. Do not under any circumstances make up any information.
+
+      **GENERATE ASSUMPTIONS**
+      
+      Based on your research, generate a list of assumptions you made about the project.
+      
+      - Wrap your assumptions in <assumptions> tags
+      - Total assumptions ≤10
+      - Each assumption should be a single sentence
+
       **GENERATE QUESTIONS (4-6 max)**
       
-      Based on your research, select the *smallest* set of questions that remain unanswered AND are critical for designing the revnet parameters. Choose from this menu, adapting the phrasing to reference specific findings from your research:
+      Based on your research and your assumptions, select the *smallest* set of questions that remain unanswered AND are critical for designing the revnet parameters. Choose from this menu, adapting the phrasing to reference specific findings from your research:
 
       • **Timeline**: "When do you expect meaningful revenue to start: immediately, within 6 months, or later?"
       • **Revenue pattern**: "Based on your [specific product/service], will income arrive as big one-off drops, steady monthly fees, or a mix?"
@@ -85,6 +95,7 @@ export async function analyzeProject(
       ## Response Format
       - Wrap your Project Vitals analysis in <analysis> tags (≤200 words)
       - Wrap each question in <question> tags
+      - Wrap your sources in <sources> tags
       - Total response ≤300 words
       `,
       providerOptions: {
