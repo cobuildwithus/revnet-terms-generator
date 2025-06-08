@@ -32,6 +32,8 @@ Each revnet has a token and is defined in stages. Each stage specifies five rule
 - Split: What percentage of token issuance (and buybacks) are set aside for a list of recipients, and which address is the split operator? The split operator can add, remove, or modify recipients from that list, changing how the split is allocated within the fixed percent set for the stage. 
   - Think of this like the founding team's share of the company.
   - It can be paid out to any address, party, or company though.
+  - The split can route tokens to any address, including other revnets, burn addresses, or external contracts - not just team members.
+  - Within the fixed percentage allocated to splits, the split operator has full flexibility to modify how tokens are distributed among recipients over time.
 
 - Automint: How many tokens get minted to a list of recipients at the start of the stage? This functions like a "pre-mine" only accessible once the stage has started.
 
