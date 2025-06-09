@@ -101,7 +101,7 @@ export function AnalyzeForm() {
             <Label htmlFor="description">Describe your project</Label>
             <Textarea
               id="description"
-              placeholder="Tell us about your project goals, target audience, tokenomics preferences, and any specific requirements. The more details you provide, the better we can configure your revnet..."
+              placeholder="Tell us about your project goals, target audience, tokenomics preferences, and any specific requirements. The more details you provide, the better we can configure your revnet... But feel free to say I don't know"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               className="min-h-[140px] resize-none field-sizing-content leading-7"
