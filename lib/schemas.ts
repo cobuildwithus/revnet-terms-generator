@@ -19,7 +19,7 @@ export const revnetStageSchema = z.object({
       z.object({
         id: z.string(),
         percentage: z.number().describe("The percentage (0-100) of the split"),
-        address: z.string().describe("The ETH address to split to"),
+        name: z.string().describe("The name of the party receiving the split"),
       })
     )
     .describe("The splits for this stage revenue sharing"),

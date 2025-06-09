@@ -16,7 +16,9 @@ export function StageItem({ stage }: StageItemProps) {
             </div>
             <span className="text-lg">Stage</span>
           </div>
-          <Badge variant="secondary">{stage.stageDuration}d</Badge>
+          <Badge variant="secondary">
+            {stage.stageDuration === 0 ? "Forever" : `${stage.stageDuration}d`}
+          </Badge>
         </div>
       </div>
 
@@ -62,7 +64,7 @@ export function StageItem({ stage }: StageItemProps) {
                 >
                   <span className="font-medium">{split.percentage}%</span>
                   <span className="font-mono text-muted-foreground text-xs">
-                    {split.address}
+                    {split.name}
                   </span>
                 </div>
               ))}

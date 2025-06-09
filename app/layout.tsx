@@ -10,7 +10,7 @@ import "./globals.css";
 const inter = Inter({ variable: "--font-sans", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Revnet Me",
+  title: "Revnet me",
   description: "Launch your Revnet in minutes",
 };
 
