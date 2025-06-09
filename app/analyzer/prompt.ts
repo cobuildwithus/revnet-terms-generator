@@ -36,6 +36,8 @@ Each revnet has a token and is defined in stages. Each stage specifies five rule
   - Within the fixed percentage allocated to splits, the split operator has full flexibility to modify how tokens are distributed among recipients over time.
 
 - Automint: How many tokens get minted to a list of recipients at the start of the stage? This functions like a "pre-mine" only accessible once the stage has started.
+  - One thing to note, unless the founder expects a huge influx of buyers into the revnet, this doesn't actually translate to dollars they can use.
+  - The revnet treasury must have funds to pay out the tokens they automint. 
 
 - Cash out tax: How much does a revnet token holder pay to cash out their tokens for a proportional amount of the revnet's treasury?
   - Think of this like a tax on the revnet's treasury that incentivizes long-term holding.
