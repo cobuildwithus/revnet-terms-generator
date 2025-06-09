@@ -32,13 +32,9 @@ export function StageItem({ stage }: StageItemProps) {
             <span className="text-sm font-medium text-muted-foreground block mb-1">
               Cut Rate
             </span>
-            <p className="text-lg font-bold">{stage.cutPercentage}%</p>
-          </div>
-          <div className="bg-muted p-3 rounded-lg">
-            <span className="text-sm font-medium text-muted-foreground block mb-1">
-              Cut Period
-            </span>
-            <p className="text-lg font-bold">{stage.cutPeriod}d</p>
+            <p className="text-lg font-bold">
+              {stage.cutPercentage}% every {stage.cutPeriod}d
+            </p>
           </div>
 
           <div className="bg-muted p-3 rounded-lg">
