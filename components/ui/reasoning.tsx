@@ -2,24 +2,10 @@
 
 import { cn } from "@/lib/utils";
 import { ChevronDownIcon } from "lucide-react";
-import React, { createContext, useContext, useEffect, useRef, useState } from "react";
+import React from "react";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./collapsible";
 import { Markdown } from "./markdown";
 import { useTextStream, type Mode } from "./response-stream";
-
-type ReasoningContextType = {
-  isOpen: boolean;
-  onOpenChange: (open: boolean) => void;
-};
-
-const ReasoningContext = createContext<ReasoningContextType | undefined>(undefined);
-
-function useReasoningContext() {
-  const context = useContext(ReasoningContext);
-  if (!context) {
-    throw new Error("useReasoningContext must be used within a Reasoning provider");
-  }
-  return context;
-}
 
 export type ReasoningProps = {
   children: React.ReactNode;
@@ -29,90 +15,47 @@ export type ReasoningProps = {
 };
 
 function Reasoning({ children, className, open, onOpenChange }: ReasoningProps) {
-  const [internalOpen, setInternalOpen] = useState(false);
-  const isControlled = open !== undefined;
-  const isOpen = isControlled ? open : internalOpen;
-
-  const handleOpenChange = (newOpen: boolean) => {
-    if (!isControlled) {
-      setInternalOpen(newOpen);
-    }
-    onOpenChange?.(newOpen);
-  };
-
   return (
-    <ReasoningContext.Provider
-      value={{
-        isOpen,
-        onOpenChange: handleOpenChange,
-      }}
-    >
-      <div className={className}>{children}</div>
-    </ReasoningContext.Provider>
+    <Collapsible open={open} onOpenChange={onOpenChange} className={className}>
+      {children}
+    </Collapsible>
   );
 }
 
 export type ReasoningTriggerProps = {
   children: React.ReactNode;
   className?: string;
-} & React.HTMLAttributes<HTMLButtonElement>;
+} & React.ComponentProps<typeof CollapsibleTrigger>;
 
-function ReasoningTrigger({ children, className, ...props }: ReasoningTriggerProps) {
-  const { isOpen, onOpenChange } = useReasoningContext();
-
+function ReasoningTriggerComponent({ children, className, ...props }: ReasoningTriggerProps) {
   return (
-    <button
-      className={cn("flex cursor-pointer items-center gap-2", className)}
-      onClick={() => onOpenChange(!isOpen)}
-      {...props}
-    >
-      <span className="text-primary">{children}</span>
-      <div className={cn("transform transition-transform", isOpen ? "rotate-180" : "")}>
-        <ChevronDownIcon className="size-4" />
-      </div>
-    </button>
+    <CollapsibleTrigger asChild {...props}>
+      <button className={cn("flex cursor-pointer items-center gap-2 group", className)}>
+        <span className="text-primary">{children}</span>
+        <div className="transform transition-transform group-data-[state=open]:rotate-180">
+          <ChevronDownIcon className="size-4" />
+        </div>
+      </button>
+    </CollapsibleTrigger>
   );
 }
 
 export type ReasoningContentProps = {
   children: React.ReactNode;
   className?: string;
-} & React.HTMLAttributes<HTMLDivElement>;
+} & React.ComponentProps<typeof CollapsibleContent>;
 
-function ReasoningContent({ children, className, ...props }: ReasoningContentProps) {
-  const contentRef = useRef<HTMLDivElement>(null);
-  const innerRef = useRef<HTMLDivElement>(null);
-  const { isOpen } = useReasoningContext();
-
-  useEffect(() => {
-    if (!contentRef.current || !innerRef.current) return;
-
-    const observer = new ResizeObserver(() => {
-      if (contentRef.current && innerRef.current && isOpen) {
-        contentRef.current.style.maxHeight = `${innerRef.current.scrollHeight}px`;
-      }
-    });
-
-    observer.observe(innerRef.current);
-
-    if (isOpen) {
-      contentRef.current.style.maxHeight = `${innerRef.current.scrollHeight}px`;
-    }
-
-    return () => observer.disconnect();
-  }, [isOpen]);
-
+function ReasoningContentComponent({ children, className, ...props }: ReasoningContentProps) {
   return (
-    <div
-      ref={contentRef}
-      className={cn("overflow-hidden transition-[max-height] duration-300 ease-out", className)}
-      style={{
-        maxHeight: isOpen ? contentRef.current?.scrollHeight : "0px",
-      }}
+    <CollapsibleContent
+      className={cn(
+        "overflow-hidden data-[state=closed]:animate-[collapsible-up_200ms_ease-out] data-[state=open]:animate-[collapsible-down_200ms_ease-out]",
+        className
+      )}
       {...props}
     >
-      <div ref={innerRef}>{children}</div>
-    </div>
+      <div className="pb-1">{children}</div>
+    </CollapsibleContent>
   );
 }
 
@@ -137,7 +80,6 @@ function ReasoningResponse({
   segmentDelay,
   characterChunkSize,
 }: ReasoningResponseProps) {
-  const { isOpen } = useReasoningContext();
   const { displayedText } = useTextStream({
     textStream: text,
     speed,
@@ -150,15 +92,13 @@ function ReasoningResponse({
 
   return (
     <div
-      className={cn(
-        "text-muted-foreground prose prose-sm dark:prose-invert text-sm transition-opacity duration-300 ease-out",
-        className
-      )}
-      style={{ opacity: isOpen ? 1 : 0 }}
+      className={cn("text-muted-foreground prose prose-sm dark:prose-invert text-sm", className)}
     >
       <Markdown>{displayedText}</Markdown>
     </div>
   );
 }
 
-export { Reasoning, ReasoningTrigger, ReasoningContent, ReasoningResponse };
+export const ReasoningTrigger = ReasoningTriggerComponent;
+export const ReasoningContent = ReasoningContentComponent;
+export { Reasoning, ReasoningResponse };

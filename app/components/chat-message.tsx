@@ -1,11 +1,7 @@
 "use client";
 
 import { Loader } from "@/components/ui/loader";
-import {
-  Message,
-  MessageAvatar,
-  MessageContent,
-} from "@/components/ui/message";
+import { Message, MessageAvatar, MessageContent } from "@/components/ui/message";
 import {
   Reasoning,
   ReasoningContent,
@@ -26,24 +22,15 @@ export function ChatMessage({ message, isStreaming }: Props) {
   const { address } = useAccount();
 
   const textParts = message.parts?.filter((part) => part.type === "text") || [];
-  const reasoningParts =
-    message.parts?.filter((part) => part.type === "reasoning") || [];
-  const toolParts =
-    message.parts?.filter((part) => part.type === "tool-invocation") || [];
+  const reasoningParts = message.parts?.filter((part) => part.type === "reasoning") || [];
+  const toolParts = message.parts?.filter((part) => part.type === "tool-invocation") || [];
 
-  const hasEmptyContent =
-    isStreaming && (!message.content || message.content.trim() === "");
+  const hasEmptyContent = isStreaming && (!message.content || message.content.trim() === "");
   const hasNoParts = !message.parts || message.parts.length === 0;
 
   return (
-    <Message
-      className={
-        message.role === "user" ? "flex-row-reverse space-x-reverse" : ""
-      }
-    >
-      {message.role !== "user" && (
-        <MessageAvatar src={AIAvatar.src} alt="AI Assistant" />
-      )}
+    <Message className={message.role === "user" ? "flex-row-reverse space-x-reverse" : ""}>
+      {message.role !== "user" && <MessageAvatar src={AIAvatar.src} alt="AI Assistant" />}
       {message.role === "user" && <Avatar address={address} size={32} />}
 
       <div className="flex flex-col gap-1">
@@ -77,9 +64,7 @@ export function ChatMessage({ message, isStreaming }: Props) {
                       );
                     case "result":
                       return (
-                        <MessageContent key={`tool-${toolCallId}`}>
-                          Terms updated!
-                        </MessageContent>
+                        <MessageContent key={`tool-${toolCallId}`}>Terms updated!</MessageContent>
                       );
                   }
                 })}
@@ -87,9 +72,7 @@ export function ChatMessage({ message, isStreaming }: Props) {
                 {reasoningParts.map((part, i) => {
                   const reasoningText =
                     part.details
-                      ?.map((detail) =>
-                        detail.type === "text" ? detail.text : ""
-                      )
+                      ?.map((detail) => (detail.type === "text" ? detail.text : ""))
                       .filter(Boolean)
                       .join("\n") || "";
 
@@ -99,12 +82,7 @@ export function ChatMessage({ message, isStreaming }: Props) {
                         Show reasoning
                       </ReasoningTrigger>
                       <ReasoningContent className="mt-2 pl-4 border-l-2 border-muted">
-                        <ReasoningResponse
-                          text={reasoningText}
-                          className="text-xs"
-                          speed={40}
-                          mode="typewriter"
-                        />
+                        <ReasoningResponse text={reasoningText} className="text-xs" speed={80} />
                       </ReasoningContent>
                     </Reasoning>
                   );
