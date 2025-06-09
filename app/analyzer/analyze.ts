@@ -20,7 +20,7 @@ export async function analyzeProject(
 ): Promise<Analysis> {
   try {
     const { text, usage, providerMetadata } = await generateText({
-      model: openai("o4-mini"),
+      model: openai("o3"),
       system: aboutRevnetPrompt,
       prompt: `
       Here is the project's description from the user:

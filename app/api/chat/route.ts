@@ -1,6 +1,6 @@
 import { Analysis } from "@/app/analyzer/analyze";
 import { aboutRevnetPrompt } from "@/app/analyzer/prompt";
-import { revnetTermsSchema } from "@/lib/schemas";
+import { RevnetTerms, revnetTermsSchema } from "@/lib/schemas";
 import { appendToChat, type ChatMessage } from "@/lib/kv";
 import { newChatId } from "@/lib/utils";
 import { createOpenAI, OpenAIResponsesProviderOptions } from "@ai-sdk/openai";
@@ -10,7 +10,7 @@ export const maxDuration = 30;
 
 const openai = createOpenAI({ compatibility: "strict" });
 
-function buildSystemPrompt(analysis: Analysis, terms: any) {
+function buildSystemPrompt(analysis: Analysis, terms: RevnetTerms) {
   return `You're in conversation with user whom are you helping with their revnet terms.
         
 ## Data
@@ -68,7 +68,7 @@ export async function POST(req: Request) {
     }
 
     const result = streamText({
-      model: openai.responses("o4-mini"),
+      model: openai.responses("o3"),
       messages: [
         { role: "system", content: aboutRevnetPrompt },
         { role: "system", content: buildSystemPrompt(analysis, terms) },
