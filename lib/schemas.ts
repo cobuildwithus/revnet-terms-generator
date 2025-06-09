@@ -1,12 +1,19 @@
 import { z } from "zod";
 
 export const revnetStageSchema = z.object({
-  id: z.number().describe("Number of the stage. Start with 1 and increment by 1 for each stage"),
+  id: z
+    .number()
+    .describe(
+      "Number of the stage. Start with 1 and increment by 1 for each stage"
+    ),
   initialPrice: z.number().describe("Price in ETH for 1 token"),
   cutPercentage: z
     .number()
-    .describe("The percentage (0-100) by which tokens per ETH decreases each period"),
-  duration: z.number().describe("The number of days this stage lasts"),
+    .describe(
+      "The percentage (0-100) by which tokens per ETH decreases each period"
+    ),
+  cutPeriod: z.number().describe("The number of days between each cut"),
+  stageDuration: z.number().describe("The number of days this stage lasts"),
   splits: z
     .array(
       z.object({
@@ -17,11 +24,10 @@ export const revnetStageSchema = z.object({
     )
     .describe("The splits for this stage revenue sharing"),
   cashOutTax: z.number().describe("The tax rate for cashing out tokens (0-1)"),
-  reasoning: z
-    .string()
-    .describe(
-      "The reasoning of the paramaters for this stage. In simple and natural language, easy to understand for humans."
-    ),
+  reasoning: z.string().describe(
+    `The reasoning of the paramaters for this stage. In simple and natural language, easy to understand for humans.
+      The last stage goes on forever, so the duration doesn't matter.`
+  ),
 });
 
 export const revnetTermsSchema = z.object({

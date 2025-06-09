@@ -75,7 +75,7 @@ export async function analyzeProject(
       - Total assumptions ≤10
       - Each assumption should be a single sentence
 
-      **GENERATE QUESTIONS (4-6 max)**
+      **GENERATE QUESTIONS (12 max)**
       
       Based on your research and your assumptions, select the *smallest* set of questions that remain unanswered AND are critical for designing the revnet parameters. Choose from this menu, adapting the phrasing to reference specific findings from your research:
 

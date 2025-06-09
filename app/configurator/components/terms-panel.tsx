@@ -1,8 +1,11 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Copy, Check } from "lucide-react";
 import { RevnetTerms } from "@/lib/schemas";
 import { StageItem } from "./stage-item";
+import { useState } from "react";
 
 interface Props {
   terms: RevnetTerms;
@@ -10,15 +13,50 @@ interface Props {
 
 export function TermsPanel(props: Props) {
   const { terms } = props;
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyTerms = async () => {
+    try {
+      const termsText = JSON.stringify(terms, null, 2);
+      await navigator.clipboard.writeText(termsText);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (error) {
+      console.error("Failed to copy terms:", error);
+    }
+  };
 
   return (
     <div className="h-full flex flex-col bg-card">
       <div className="p-6 pb-0">
         <div className="flex items-center justify-between">
           <h2 className="text-2xl font-bold">Revnet Terms</h2>
-          <Badge variant="outline">
-            {terms.stages.length} {terms.stages.length === 1 ? "Stage" : "Stages"}
-          </Badge>
+          <div className="flex items-center gap-2">
+            {terms.stages.length > 0 && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleCopyTerms}
+                className="flex items-center gap-2"
+              >
+                {copied ? (
+                  <>
+                    <Check size={16} />
+                    Copied!
+                  </>
+                ) : (
+                  <>
+                    <Copy size={16} />
+                    Copy Terms
+                  </>
+                )}
+              </Button>
+            )}
+            <Badge variant="outline">
+              {terms.stages.length}{" "}
+              {terms.stages.length === 1 ? "Stage" : "Stages"}
+            </Badge>
+          </div>
         </div>
       </div>
 

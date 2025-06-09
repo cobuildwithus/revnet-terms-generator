@@ -16,7 +16,7 @@ export function StageItem({ stage }: StageItemProps) {
             </div>
             <span className="text-lg">Stage</span>
           </div>
-          <Badge variant="secondary">{stage.duration}d</Badge>
+          <Badge variant="secondary">{stage.stageDuration}d</Badge>
         </div>
       </div>
 
@@ -29,15 +29,25 @@ export function StageItem({ stage }: StageItemProps) {
             <p className="text-lg font-bold">{stage.initialPrice} ETH</p>
           </div>
           <div className="bg-muted p-3 rounded-lg">
-            <span className="text-sm font-medium text-muted-foreground block mb-1">Cut Rate</span>
+            <span className="text-sm font-medium text-muted-foreground block mb-1">
+              Cut Rate
+            </span>
             <p className="text-lg font-bold">{stage.cutPercentage}%</p>
+          </div>
+          <div className="bg-muted p-3 rounded-lg">
+            <span className="text-sm font-medium text-muted-foreground block mb-1">
+              Cut Period
+            </span>
+            <p className="text-lg font-bold">{stage.cutPeriod}d</p>
           </div>
 
           <div className="bg-muted p-3 rounded-lg">
             <span className="text-sm font-medium text-muted-foreground block mb-1">
               Cash Out Tax
             </span>
-            <p className="text-lg font-bold">{(stage.cashOutTax * 100).toFixed(1)}%</p>
+            <p className="text-lg font-bold">
+              {(stage.cashOutTax * 100).toFixed(1)}%
+            </p>
           </div>
         </div>
 
@@ -55,7 +65,9 @@ export function StageItem({ stage }: StageItemProps) {
                   className="flex justify-between items-center text-sm bg-muted p-2 rounded border"
                 >
                   <span className="font-medium">{split.percentage}%</span>
-                  <span className="font-mono text-muted-foreground text-xs">{split.address}</span>
+                  <span className="font-mono text-muted-foreground text-xs">
+                    {split.address}
+                  </span>
                 </div>
               ))}
             </div>
