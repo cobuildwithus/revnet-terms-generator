@@ -15,7 +15,7 @@ import {
 import { UIMessage } from "ai";
 import { Avatar } from "connectkit";
 import { useAccount } from "wagmi";
-import AIAvatar from "../avatar.png";
+import AIAvatar from "./avatar.png";
 
 interface Props {
   message: UIMessage;

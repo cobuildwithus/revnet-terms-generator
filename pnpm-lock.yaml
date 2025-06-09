@@ -32,6 +32,9 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.76.2
         version: 5.80.2(react@19.1.0)
+      '@vercel/kv':
+        specifier: ^3.0.0
+        version: 3.0.0
       ai:
         specifier: ^4.3.16
         version: 4.3.16(react@19.1.0)(zod@3.25.49)
@@ -43,7 +46,7 @@ importers:
         version: 2.1.1
       connectkit:
         specifier: ^1.9.0
-        version: 1.9.0(@babel/core@7.27.4)(@tanstack/react-query@5.80.2(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react-is@18.3.1)(react@19.1.0)(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49))(wagmi@2.15.4(@tanstack/query-core@5.80.2)(@tanstack/react-query@5.80.2(react@19.1.0))(@types/react@19.1.6)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49))(zod@3.25.49))
+        version: 1.9.0(@babel/core@7.27.4)(@tanstack/react-query@5.80.2(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react-is@18.3.1)(react@19.1.0)(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49))(wagmi@2.15.4(@tanstack/query-core@5.80.2)(@tanstack/react-query@5.80.2(react@19.1.0))(@types/react@19.1.6)(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49))(zod@3.25.49))
       lucide-react:
         specifier: ^0.511.0
         version: 0.511.0(react@19.1.0)
@@ -53,6 +56,9 @@ importers:
       motion:
         specifier: ^12.16.0
         version: 12.16.0(@emotion/is-prop-valid@1.3.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      nanoid:
+        specifier: ^5.1.5
+        version: 5.1.5
       next:
         specifier: 15.3.2
         version: 15.3.2(@babel/core@7.27.4)(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -94,7 +100,7 @@ importers:
         version: 2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
       wagmi:
         specifier: ^2.15.4
-        version: 2.15.4(@tanstack/query-core@5.80.2)(@tanstack/react-query@5.80.2(react@19.1.0))(@types/react@19.1.6)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49))(zod@3.25.49)
+        version: 2.15.4(@tanstack/query-core@5.80.2)(@tanstack/react-query@5.80.2(react@19.1.0))(@types/react@19.1.6)(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49))(zod@3.25.49)
       zod:
         specifier: ^3.25.49
         version: 3.25.49
@@ -1458,6 +1464,13 @@ packages:
     resolution: {integrity: sha512-hORofIRZCm85+TUZ9OmHQJNlgtOmK/TPfvYeSplKAl+zQvAwMGyy6DZcSbrF+KdB1EDoGISwU7dX7PE92haOXg==}
     cpu: [x64]
     os: [win32]
+
+  '@upstash/redis@1.35.0':
+    resolution: {integrity: sha512-WUm0Jz1xN4DBDGeJIi2Y0kVsolWRB2tsVds4SExaiLg4wBdHFMB+8IfZtBWr+BP0FvhuBr5G1/VLrJ9xzIWHsg==}
+
+  '@vercel/kv@3.0.0':
+    resolution: {integrity: sha512-pKT8fRnfyYk2MgvyB6fn6ipJPCdfZwiKDdw7vB+HL50rjboEBHDVBEcnwfkEpVSp2AjNtoaOUH7zG+bVC/rvSg==}
+    engines: {node: '>=14.6'}
 
   '@wagmi/connectors@5.8.3':
     resolution: {integrity: sha512-U4SJgi91+ny/XDGQWAMmawMafDx1BofcbYkPT/WSU6XrGL+apa7VltscqY7PVmwVGi/CYTqe8nlQiK/wmQ8D3A==}
@@ -3054,6 +3067,11 @@ packages:
   nanoid@3.3.11:
     resolution: {integrity: sha512-N8SpfPUnUp1bK+PMYW8qSWdl9U+wwNWI4QKxOYDy9JAro3WMX7p2OeVRF9v+347pnakNevPmiHhNmZ2HbFA76w==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
+    hasBin: true
+
+  nanoid@5.1.5:
+    resolution: {integrity: sha512-Ir/+ZpE9fDsNH0hQ3C68uyThDXzYcim2EqcZ8zn8Chtt1iylPT9xXJB0kPCnqzgcEGikO9RxSrh63MsmVCU7Fw==}
+    engines: {node: ^18 || >=20}
     hasBin: true
 
   napi-postinstall@0.2.4:
@@ -5185,11 +5203,11 @@ snapshots:
       - utf-8-validate
       - zod
 
-  '@reown/appkit-controllers@1.7.3(@types/react@19.1.6)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)':
+  '@reown/appkit-controllers@1.7.3(@types/react@19.1.6)(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)':
     dependencies:
       '@reown/appkit-common': 1.7.3(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
       '@reown/appkit-wallet': 1.7.3(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)
-      '@walletconnect/universal-provider': 2.19.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
+      '@walletconnect/universal-provider': 2.19.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
       valtio: 1.13.2(@types/react@19.1.6)(react@19.1.0)
       viem: 2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
     transitivePeerDependencies:
@@ -5223,12 +5241,12 @@ snapshots:
     dependencies:
       buffer: 6.0.3
 
-  '@reown/appkit-scaffold-ui@1.7.3(@types/react@19.1.6)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(valtio@1.13.2(@types/react@19.1.6)(react@19.1.0))(zod@3.25.49)':
+  '@reown/appkit-scaffold-ui@1.7.3(@types/react@19.1.6)(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(valtio@1.13.2(@types/react@19.1.6)(react@19.1.0))(zod@3.25.49)':
     dependencies:
       '@reown/appkit-common': 1.7.3(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
-      '@reown/appkit-controllers': 1.7.3(@types/react@19.1.6)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
-      '@reown/appkit-ui': 1.7.3(@types/react@19.1.6)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
-      '@reown/appkit-utils': 1.7.3(@types/react@19.1.6)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(valtio@1.13.2(@types/react@19.1.6)(react@19.1.0))(zod@3.25.49)
+      '@reown/appkit-controllers': 1.7.3(@types/react@19.1.6)(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
+      '@reown/appkit-ui': 1.7.3(@types/react@19.1.6)(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
+      '@reown/appkit-utils': 1.7.3(@types/react@19.1.6)(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(valtio@1.13.2(@types/react@19.1.6)(react@19.1.0))(zod@3.25.49)
       '@reown/appkit-wallet': 1.7.3(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)
       lit: 3.1.0
     transitivePeerDependencies:
@@ -5259,10 +5277,10 @@ snapshots:
       - valtio
       - zod
 
-  '@reown/appkit-ui@1.7.3(@types/react@19.1.6)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)':
+  '@reown/appkit-ui@1.7.3(@types/react@19.1.6)(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)':
     dependencies:
       '@reown/appkit-common': 1.7.3(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
-      '@reown/appkit-controllers': 1.7.3(@types/react@19.1.6)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
+      '@reown/appkit-controllers': 1.7.3(@types/react@19.1.6)(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
       '@reown/appkit-wallet': 1.7.3(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)
       lit: 3.1.0
       qrcode: 1.5.3
@@ -5293,14 +5311,14 @@ snapshots:
       - utf-8-validate
       - zod
 
-  '@reown/appkit-utils@1.7.3(@types/react@19.1.6)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(valtio@1.13.2(@types/react@19.1.6)(react@19.1.0))(zod@3.25.49)':
+  '@reown/appkit-utils@1.7.3(@types/react@19.1.6)(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(valtio@1.13.2(@types/react@19.1.6)(react@19.1.0))(zod@3.25.49)':
     dependencies:
       '@reown/appkit-common': 1.7.3(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
-      '@reown/appkit-controllers': 1.7.3(@types/react@19.1.6)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
+      '@reown/appkit-controllers': 1.7.3(@types/react@19.1.6)(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
       '@reown/appkit-polyfills': 1.7.3
       '@reown/appkit-wallet': 1.7.3(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)
       '@walletconnect/logger': 2.1.2
-      '@walletconnect/universal-provider': 2.19.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
+      '@walletconnect/universal-provider': 2.19.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
       valtio: 1.13.2(@types/react@19.1.6)(react@19.1.0)
       viem: 2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
     transitivePeerDependencies:
@@ -5341,17 +5359,17 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  '@reown/appkit@1.7.3(@types/react@19.1.6)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)':
+  '@reown/appkit@1.7.3(@types/react@19.1.6)(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)':
     dependencies:
       '@reown/appkit-common': 1.7.3(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
-      '@reown/appkit-controllers': 1.7.3(@types/react@19.1.6)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
+      '@reown/appkit-controllers': 1.7.3(@types/react@19.1.6)(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
       '@reown/appkit-polyfills': 1.7.3
-      '@reown/appkit-scaffold-ui': 1.7.3(@types/react@19.1.6)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(valtio@1.13.2(@types/react@19.1.6)(react@19.1.0))(zod@3.25.49)
-      '@reown/appkit-ui': 1.7.3(@types/react@19.1.6)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
-      '@reown/appkit-utils': 1.7.3(@types/react@19.1.6)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(valtio@1.13.2(@types/react@19.1.6)(react@19.1.0))(zod@3.25.49)
+      '@reown/appkit-scaffold-ui': 1.7.3(@types/react@19.1.6)(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(valtio@1.13.2(@types/react@19.1.6)(react@19.1.0))(zod@3.25.49)
+      '@reown/appkit-ui': 1.7.3(@types/react@19.1.6)(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
+      '@reown/appkit-utils': 1.7.3(@types/react@19.1.6)(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(valtio@1.13.2(@types/react@19.1.6)(react@19.1.0))(zod@3.25.49)
       '@reown/appkit-wallet': 1.7.3(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)
-      '@walletconnect/types': 2.19.2
-      '@walletconnect/universal-provider': 2.19.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
+      '@walletconnect/types': 2.19.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)
+      '@walletconnect/universal-provider': 2.19.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
       bs58: 6.0.0
       valtio: 1.13.2(@types/react@19.1.6)(react@19.1.0)
       viem: 2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
@@ -5769,14 +5787,22 @@ snapshots:
   '@unrs/resolver-binding-win32-x64-msvc@1.7.9':
     optional: true
 
-  '@wagmi/connectors@5.8.3(@types/react@19.1.6)(@wagmi/core@2.17.2(@tanstack/query-core@5.80.2)(@types/react@19.1.6)(react@19.1.0)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.1.0))(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)))(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49))(zod@3.25.49)':
+  '@upstash/redis@1.35.0':
+    dependencies:
+      uncrypto: 0.1.3
+
+  '@vercel/kv@3.0.0':
+    dependencies:
+      '@upstash/redis': 1.35.0
+
+  '@wagmi/connectors@5.8.3(@types/react@19.1.6)(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(@wagmi/core@2.17.2(@tanstack/query-core@5.80.2)(@types/react@19.1.6)(react@19.1.0)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.1.0))(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)))(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49))(zod@3.25.49)':
     dependencies:
       '@coinbase/wallet-sdk': 4.3.0
       '@metamask/sdk': 0.32.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       '@safe-global/safe-apps-provider': 0.18.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
       '@safe-global/safe-apps-sdk': 9.1.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
       '@wagmi/core': 2.17.2(@tanstack/query-core@5.80.2)(@types/react@19.1.6)(react@19.1.0)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.1.0))(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49))
-      '@walletconnect/ethereum-provider': 2.20.2(@types/react@19.1.6)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
+      '@walletconnect/ethereum-provider': 2.20.2(@types/react@19.1.6)(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
       cbw-sdk: '@coinbase/wallet-sdk@3.9.3'
       viem: 2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
     optionalDependencies:
@@ -5823,21 +5849,21 @@ snapshots:
       - react
       - use-sync-external-store
 
-  '@walletconnect/core@2.19.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)':
+  '@walletconnect/core@2.19.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)':
     dependencies:
       '@walletconnect/heartbeat': 1.2.2
       '@walletconnect/jsonrpc-provider': 1.0.14
       '@walletconnect/jsonrpc-types': 1.0.4
       '@walletconnect/jsonrpc-utils': 1.0.8
       '@walletconnect/jsonrpc-ws-connection': 1.0.16(bufferutil@4.0.9)(utf-8-validate@5.0.10)
-      '@walletconnect/keyvaluestorage': 1.1.1
+      '@walletconnect/keyvaluestorage': 1.1.1(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)
       '@walletconnect/logger': 2.1.2
       '@walletconnect/relay-api': 1.0.11
       '@walletconnect/relay-auth': 1.1.0
       '@walletconnect/safe-json': 1.0.2
       '@walletconnect/time': 1.0.2
-      '@walletconnect/types': 2.19.2
-      '@walletconnect/utils': 2.19.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
+      '@walletconnect/types': 2.19.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)
+      '@walletconnect/utils': 2.19.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
       '@walletconnect/window-getters': 1.0.1
       es-toolkit: 1.33.0
       events: 3.3.0
@@ -5866,21 +5892,21 @@ snapshots:
       - utf-8-validate
       - zod
 
-  '@walletconnect/core@2.20.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)':
+  '@walletconnect/core@2.20.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)':
     dependencies:
       '@walletconnect/heartbeat': 1.2.2
       '@walletconnect/jsonrpc-provider': 1.0.14
       '@walletconnect/jsonrpc-types': 1.0.4
       '@walletconnect/jsonrpc-utils': 1.0.8
       '@walletconnect/jsonrpc-ws-connection': 1.0.16(bufferutil@4.0.9)(utf-8-validate@5.0.10)
-      '@walletconnect/keyvaluestorage': 1.1.1
+      '@walletconnect/keyvaluestorage': 1.1.1(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)
       '@walletconnect/logger': 2.1.2
       '@walletconnect/relay-api': 1.0.11
       '@walletconnect/relay-auth': 1.1.0
       '@walletconnect/safe-json': 1.0.2
       '@walletconnect/time': 1.0.2
-      '@walletconnect/types': 2.20.2
-      '@walletconnect/utils': 2.20.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
+      '@walletconnect/types': 2.20.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)
+      '@walletconnect/utils': 2.20.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
       '@walletconnect/window-getters': 1.0.1
       es-toolkit: 1.33.0
       events: 3.3.0
@@ -5913,18 +5939,18 @@ snapshots:
     dependencies:
       tslib: 1.14.1
 
-  '@walletconnect/ethereum-provider@2.20.2(@types/react@19.1.6)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)':
+  '@walletconnect/ethereum-provider@2.20.2(@types/react@19.1.6)(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)':
     dependencies:
-      '@reown/appkit': 1.7.3(@types/react@19.1.6)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
+      '@reown/appkit': 1.7.3(@types/react@19.1.6)(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
       '@walletconnect/jsonrpc-http-connection': 1.0.8
       '@walletconnect/jsonrpc-provider': 1.0.14
       '@walletconnect/jsonrpc-types': 1.0.4
       '@walletconnect/jsonrpc-utils': 1.0.8
-      '@walletconnect/keyvaluestorage': 1.1.1
-      '@walletconnect/sign-client': 2.20.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
-      '@walletconnect/types': 2.20.2
-      '@walletconnect/universal-provider': 2.20.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
-      '@walletconnect/utils': 2.20.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
+      '@walletconnect/keyvaluestorage': 1.1.1(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)
+      '@walletconnect/sign-client': 2.20.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
+      '@walletconnect/types': 2.20.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)
+      '@walletconnect/universal-provider': 2.20.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
+      '@walletconnect/utils': 2.20.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
       events: 3.3.0
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -6000,11 +6026,11 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@walletconnect/keyvaluestorage@1.1.1':
+  '@walletconnect/keyvaluestorage@1.1.1(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)':
     dependencies:
       '@walletconnect/safe-json': 1.0.2
       idb-keyval: 6.2.2
-      unstorage: 1.16.0(idb-keyval@6.2.2)
+      unstorage: 1.16.0(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(idb-keyval@6.2.2)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -6045,16 +6071,16 @@ snapshots:
     dependencies:
       tslib: 1.14.1
 
-  '@walletconnect/sign-client@2.19.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)':
+  '@walletconnect/sign-client@2.19.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)':
     dependencies:
-      '@walletconnect/core': 2.19.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
+      '@walletconnect/core': 2.19.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
       '@walletconnect/events': 1.0.1
       '@walletconnect/heartbeat': 1.2.2
       '@walletconnect/jsonrpc-utils': 1.0.8
       '@walletconnect/logger': 2.1.2
       '@walletconnect/time': 1.0.2
-      '@walletconnect/types': 2.19.2
-      '@walletconnect/utils': 2.19.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
+      '@walletconnect/types': 2.19.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)
+      '@walletconnect/utils': 2.19.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
       events: 3.3.0
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -6080,16 +6106,16 @@ snapshots:
       - utf-8-validate
       - zod
 
-  '@walletconnect/sign-client@2.20.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)':
+  '@walletconnect/sign-client@2.20.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)':
     dependencies:
-      '@walletconnect/core': 2.20.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
+      '@walletconnect/core': 2.20.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
       '@walletconnect/events': 1.0.1
       '@walletconnect/heartbeat': 1.2.2
       '@walletconnect/jsonrpc-utils': 1.0.8
       '@walletconnect/logger': 2.1.2
       '@walletconnect/time': 1.0.2
-      '@walletconnect/types': 2.20.2
-      '@walletconnect/utils': 2.20.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
+      '@walletconnect/types': 2.20.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)
+      '@walletconnect/utils': 2.20.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
       events: 3.3.0
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -6119,12 +6145,12 @@ snapshots:
     dependencies:
       tslib: 1.14.1
 
-  '@walletconnect/types@2.19.2':
+  '@walletconnect/types@2.19.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)':
     dependencies:
       '@walletconnect/events': 1.0.1
       '@walletconnect/heartbeat': 1.2.2
       '@walletconnect/jsonrpc-types': 1.0.4
-      '@walletconnect/keyvaluestorage': 1.1.1
+      '@walletconnect/keyvaluestorage': 1.1.1(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)
       '@walletconnect/logger': 2.1.2
       events: 3.3.0
     transitivePeerDependencies:
@@ -6147,12 +6173,12 @@ snapshots:
       - ioredis
       - uploadthing
 
-  '@walletconnect/types@2.20.2':
+  '@walletconnect/types@2.20.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)':
     dependencies:
       '@walletconnect/events': 1.0.1
       '@walletconnect/heartbeat': 1.2.2
       '@walletconnect/jsonrpc-types': 1.0.4
-      '@walletconnect/keyvaluestorage': 1.1.1
+      '@walletconnect/keyvaluestorage': 1.1.1(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)
       '@walletconnect/logger': 2.1.2
       events: 3.3.0
     transitivePeerDependencies:
@@ -6175,18 +6201,18 @@ snapshots:
       - ioredis
       - uploadthing
 
-  '@walletconnect/universal-provider@2.19.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)':
+  '@walletconnect/universal-provider@2.19.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)':
     dependencies:
       '@walletconnect/events': 1.0.1
       '@walletconnect/jsonrpc-http-connection': 1.0.8
       '@walletconnect/jsonrpc-provider': 1.0.14
       '@walletconnect/jsonrpc-types': 1.0.4
       '@walletconnect/jsonrpc-utils': 1.0.8
-      '@walletconnect/keyvaluestorage': 1.1.1
+      '@walletconnect/keyvaluestorage': 1.1.1(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)
       '@walletconnect/logger': 2.1.2
-      '@walletconnect/sign-client': 2.19.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
-      '@walletconnect/types': 2.19.2
-      '@walletconnect/utils': 2.19.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
+      '@walletconnect/sign-client': 2.19.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
+      '@walletconnect/types': 2.19.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)
+      '@walletconnect/utils': 2.19.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
       es-toolkit: 1.33.0
       events: 3.3.0
     transitivePeerDependencies:
@@ -6214,18 +6240,18 @@ snapshots:
       - utf-8-validate
       - zod
 
-  '@walletconnect/universal-provider@2.20.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)':
+  '@walletconnect/universal-provider@2.20.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)':
     dependencies:
       '@walletconnect/events': 1.0.1
       '@walletconnect/jsonrpc-http-connection': 1.0.8
       '@walletconnect/jsonrpc-provider': 1.0.14
       '@walletconnect/jsonrpc-types': 1.0.4
       '@walletconnect/jsonrpc-utils': 1.0.8
-      '@walletconnect/keyvaluestorage': 1.1.1
+      '@walletconnect/keyvaluestorage': 1.1.1(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)
       '@walletconnect/logger': 2.1.2
-      '@walletconnect/sign-client': 2.20.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
-      '@walletconnect/types': 2.20.2
-      '@walletconnect/utils': 2.20.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
+      '@walletconnect/sign-client': 2.20.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
+      '@walletconnect/types': 2.20.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)
+      '@walletconnect/utils': 2.20.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
       es-toolkit: 1.33.0
       events: 3.3.0
     transitivePeerDependencies:
@@ -6253,18 +6279,18 @@ snapshots:
       - utf-8-validate
       - zod
 
-  '@walletconnect/utils@2.19.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)':
+  '@walletconnect/utils@2.19.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)':
     dependencies:
       '@noble/ciphers': 1.2.1
       '@noble/curves': 1.8.1
       '@noble/hashes': 1.7.1
       '@walletconnect/jsonrpc-utils': 1.0.8
-      '@walletconnect/keyvaluestorage': 1.1.1
+      '@walletconnect/keyvaluestorage': 1.1.1(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)
       '@walletconnect/relay-api': 1.0.11
       '@walletconnect/relay-auth': 1.1.0
       '@walletconnect/safe-json': 1.0.2
       '@walletconnect/time': 1.0.2
-      '@walletconnect/types': 2.19.2
+      '@walletconnect/types': 2.19.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)
       '@walletconnect/window-getters': 1.0.1
       '@walletconnect/window-metadata': 1.0.1
       bs58: 6.0.0
@@ -6296,18 +6322,18 @@ snapshots:
       - utf-8-validate
       - zod
 
-  '@walletconnect/utils@2.20.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)':
+  '@walletconnect/utils@2.20.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)':
     dependencies:
       '@noble/ciphers': 1.2.1
       '@noble/curves': 1.8.1
       '@noble/hashes': 1.7.1
       '@walletconnect/jsonrpc-utils': 1.0.8
-      '@walletconnect/keyvaluestorage': 1.1.1
+      '@walletconnect/keyvaluestorage': 1.1.1(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)
       '@walletconnect/relay-api': 1.0.11
       '@walletconnect/relay-auth': 1.1.0
       '@walletconnect/safe-json': 1.0.2
       '@walletconnect/time': 1.0.2
-      '@walletconnect/types': 2.20.2
+      '@walletconnect/types': 2.20.2(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)
       '@walletconnect/window-getters': 1.0.1
       '@walletconnect/window-metadata': 1.0.1
       bs58: 6.0.0
@@ -6636,12 +6662,12 @@ snapshots:
 
   concat-map@0.0.1: {}
 
-  connectkit@1.9.0(@babel/core@7.27.4)(@tanstack/react-query@5.80.2(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react-is@18.3.1)(react@19.1.0)(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49))(wagmi@2.15.4(@tanstack/query-core@5.80.2)(@tanstack/react-query@5.80.2(react@19.1.0))(@types/react@19.1.6)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49))(zod@3.25.49)):
+  connectkit@1.9.0(@babel/core@7.27.4)(@tanstack/react-query@5.80.2(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react-is@18.3.1)(react@19.1.0)(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49))(wagmi@2.15.4(@tanstack/query-core@5.80.2)(@tanstack/react-query@5.80.2(react@19.1.0))(@types/react@19.1.6)(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49))(zod@3.25.49)):
     dependencies:
       '@tanstack/react-query': 5.80.2(react@19.1.0)
       buffer: 6.0.3
       detect-browser: 5.3.0
-      family: 0.1.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49))(wagmi@2.15.4(@tanstack/query-core@5.80.2)(@tanstack/react-query@5.80.2(react@19.1.0))(@types/react@19.1.6)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49))(zod@3.25.49))
+      family: 0.1.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49))(wagmi@2.15.4(@tanstack/query-core@5.80.2)(@tanstack/react-query@5.80.2(react@19.1.0))(@types/react@19.1.6)(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49))(zod@3.25.49))
       framer-motion: 6.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       qrcode: 1.5.4
       react: 19.1.0
@@ -6651,7 +6677,7 @@ snapshots:
       resize-observer-polyfill: 1.5.1
       styled-components: 5.3.11(@babel/core@7.27.4)(react-dom@19.1.0(react@19.1.0))(react-is@18.3.1)(react@19.1.0)
       viem: 2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
-      wagmi: 2.15.4(@tanstack/query-core@5.80.2)(@tanstack/react-query@5.80.2(react@19.1.0))(@types/react@19.1.6)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49))(zod@3.25.49)
+      wagmi: 2.15.4(@tanstack/query-core@5.80.2)(@tanstack/react-query@5.80.2(react@19.1.0))(@types/react@19.1.6)(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49))(zod@3.25.49)
     transitivePeerDependencies:
       - '@babel/core'
       - react-is
@@ -7194,12 +7220,12 @@ snapshots:
       readable-stream: 3.6.2
       webextension-polyfill: 0.10.0
 
-  family@0.1.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49))(wagmi@2.15.4(@tanstack/query-core@5.80.2)(@tanstack/react-query@5.80.2(react@19.1.0))(@types/react@19.1.6)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49))(zod@3.25.49)):
+  family@0.1.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49))(wagmi@2.15.4(@tanstack/query-core@5.80.2)(@tanstack/react-query@5.80.2(react@19.1.0))(@types/react@19.1.6)(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49))(zod@3.25.49)):
     optionalDependencies:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
       viem: 2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)
-      wagmi: 2.15.4(@tanstack/query-core@5.80.2)(@tanstack/react-query@5.80.2(react@19.1.0))(@types/react@19.1.6)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49))(zod@3.25.49)
+      wagmi: 2.15.4(@tanstack/query-core@5.80.2)(@tanstack/react-query@5.80.2(react@19.1.0))(@types/react@19.1.6)(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49))(zod@3.25.49)
 
   fast-deep-equal@3.1.3: {}
 
@@ -8204,6 +8230,8 @@ snapshots:
 
   nanoid@3.3.11: {}
 
+  nanoid@5.1.5: {}
+
   napi-postinstall@0.2.4: {}
 
   natural-compare@1.4.0: {}
@@ -9207,7 +9235,7 @@ snapshots:
       '@unrs/resolver-binding-win32-ia32-msvc': 1.7.9
       '@unrs/resolver-binding-win32-x64-msvc': 1.7.9
 
-  unstorage@1.16.0(idb-keyval@6.2.2):
+  unstorage@1.16.0(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(idb-keyval@6.2.2):
     dependencies:
       anymatch: 3.1.3
       chokidar: 4.0.3
@@ -9218,6 +9246,8 @@ snapshots:
       ofetch: 1.4.1
       ufo: 1.6.1
     optionalDependencies:
+      '@upstash/redis': 1.35.0
+      '@vercel/kv': 3.0.0
       idb-keyval: 6.2.2
 
   update-browserslist-db@1.1.3(browserslist@4.25.0):
@@ -9349,10 +9379,10 @@ snapshots:
       - utf-8-validate
       - zod
 
-  wagmi@2.15.4(@tanstack/query-core@5.80.2)(@tanstack/react-query@5.80.2(react@19.1.0))(@types/react@19.1.6)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49))(zod@3.25.49):
+  wagmi@2.15.4(@tanstack/query-core@5.80.2)(@tanstack/react-query@5.80.2(react@19.1.0))(@types/react@19.1.6)(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49))(zod@3.25.49):
     dependencies:
       '@tanstack/react-query': 5.80.2(react@19.1.0)
-      '@wagmi/connectors': 5.8.3(@types/react@19.1.6)(@wagmi/core@2.17.2(@tanstack/query-core@5.80.2)(@types/react@19.1.6)(react@19.1.0)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.1.0))(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)))(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49))(zod@3.25.49)
+      '@wagmi/connectors': 5.8.3(@types/react@19.1.6)(@upstash/redis@1.35.0)(@vercel/kv@3.0.0)(@wagmi/core@2.17.2(@tanstack/query-core@5.80.2)(@types/react@19.1.6)(react@19.1.0)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.1.0))(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49)))(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49))(zod@3.25.49)
       '@wagmi/core': 2.17.2(@tanstack/query-core@5.80.2)(@types/react@19.1.6)(react@19.1.0)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.1.0))(viem@2.30.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.49))
       react: 19.1.0
       use-sync-external-store: 1.4.0(react@19.1.0)

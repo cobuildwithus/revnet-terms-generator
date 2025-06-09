@@ -20,7 +20,7 @@ export async function analyzeProject(
 ): Promise<Analysis> {
   try {
     const { text, usage, providerMetadata } = await generateText({
-      model: openai("o3"),
+      model: openai("o4-mini"),
       system: aboutRevnetPrompt,
       prompt: `
       Here is the project's description from the user:
@@ -116,7 +116,7 @@ export async function analyzeProject(
       reasoningTokens: providerMetadata?.openai?.reasoningTokens,
     });
 
-    console.log("Text", text);
+    console.debug("Text:", text);
 
     if (!text) throw new Error("No analysis generated");
 
@@ -149,7 +149,7 @@ export async function analyzeProject(
       }),
     });
 
-    console.log("Object", object);
+    console.debug("Object:", object);
 
     return { ...object, error: null, userDescription };
   } catch (error) {

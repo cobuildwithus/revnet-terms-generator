@@ -16,27 +16,41 @@ import {
 import { ScrollButton } from "@/components/ui/scroll-button";
 import { RevnetTerms } from "@/lib/schemas";
 import { useChat } from "@ai-sdk/react";
-import { ArrowUp } from "lucide-react";
+import { ArrowUp, Share2, Check } from "lucide-react";
 import Image from "next/image";
 import { toast } from "sonner";
-import AIAvatar from "../avatar.png";
+import { useState } from "react";
+import AIAvatar from "./avatar.png";
 import { ChatMessage } from "./chat-message";
+import { type ChatMessage as KVChatMessage } from "@/lib/kv";
 
 interface ChatPanelProps {
+  chatId: string;
   terms: RevnetTerms;
   onTermsUpdate: (terms: RevnetTerms) => void;
   analysis: Analysis;
+  initialMessages?: KVChatMessage[];
 }
 
 export function ChatPanel(props: ChatPanelProps) {
-  const { terms, onTermsUpdate, analysis } = props;
+  const {
+    chatId,
+    terms,
+    onTermsUpdate,
+    analysis,
+    initialMessages = [],
+  } = props;
+  const [copied, setCopied] = useState(false);
 
   const { messages, input, setInput, handleSubmit, status } = useChat({
     api: "/api/chat",
-    initialMessages: analysis.initialMessage
-      ? [{ id: "init", role: "assistant", content: analysis.initialMessage }]
-      : [],
-    body: { terms, analysis },
+    initialMessages:
+      initialMessages.length > 0
+        ? initialMessages
+        : analysis.initialMessage
+        ? [{ id: "init", role: "assistant", content: analysis.initialMessage }]
+        : [],
+    body: { terms, analysis, chatId },
     onToolCall({ toolCall }) {
       if (toolCall.toolName === "updateTerms") {
         onTermsUpdate(toolCall.args as RevnetTerms);
@@ -50,23 +64,58 @@ export function ChatPanel(props: ChatPanelProps) {
 
   const isLoading = status === "streaming" || status === "submitted";
 
+  const handleShare = async () => {
+    const shareUrl = `${window.location.origin}/chat/${chatId}`;
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+      toast.success("Share link copied to clipboard!");
+    } catch (err) {
+      console.error("Failed to copy:", err);
+      toast.error("Failed to copy share link");
+    }
+  };
+
   return (
     <div className="h-full flex flex-col">
       <div className="p-6 border-b shrink-0">
-        <div className="flex items-center space-x-3">
-          <Image
-            src={AIAvatar}
-            alt="AI Assistant"
-            width={40}
-            height={40}
-            className="rounded-full object-cover size-10 aspect-square"
-          />
-          <div>
-            <h2 className="text-xl font-bold">Revnet Wizard</h2>
-            <p className="text-sm text-muted-foreground">
-              Ask questions and modify your terms
-            </p>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <Image
+              src={AIAvatar}
+              alt="AI Assistant"
+              width={40}
+              height={40}
+              className="rounded-full object-cover size-10 aspect-square"
+            />
+            <div>
+              <h2 className="text-xl font-bold">Revnet Wizard</h2>
+              <p className="text-sm text-muted-foreground">
+                Ask questions and modify your terms
+              </p>
+            </div>
           </div>
+          {messages.length > 0 && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleShare}
+              className="flex items-center gap-2"
+            >
+              {copied ? (
+                <>
+                  <Check className="h-4 w-4" />
+                  Copied!
+                </>
+              ) : (
+                <>
+                  <Share2 className="h-4 w-4" />
+                  Share Chat
+                </>
+              )}
+            </Button>
+          )}
         </div>
       </div>
 

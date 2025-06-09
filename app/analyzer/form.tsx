@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { appendToChat, setChatMetadata, type ChatMessage } from "@/lib/kv";
+import { newChatId } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import type React from "react";
 import { useState, useEffect } from "react";
@@ -60,9 +62,28 @@ export function AnalyzeForm() {
       const analysis = await analyzeProject(description);
       if (analysis.error) throw new Error(analysis.error);
 
-      localStorage.setItem("analysis", JSON.stringify(analysis));
+      // Generate a new chat ID
+      const chatId = newChatId();
+
+      // Store chat metadata in KV
+      await setChatMetadata(chatId, {
+        analysis,
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
+      });
+
+      // Save the initial assistant message if it exists
+      if (analysis.initialMessage) {
+        const initialMessage: ChatMessage = {
+          id: "init",
+          role: "assistant",
+          content: analysis.initialMessage,
+        };
+        await appendToChat(chatId, initialMessage);
+      }
+
       toast.success("Finished analysis. Redirecting...", { id: toastId });
-      router.push("/configurator");
+      router.push(`/chat/${chatId}`);
     } catch (error) {
       console.error("Error analyzing project:", error);
       toast.error("Error. Please try again.", { id: toastId });
