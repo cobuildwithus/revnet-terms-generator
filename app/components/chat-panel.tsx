@@ -23,6 +23,7 @@ import { useState } from "react";
 import AIAvatar from "./avatar.png";
 import { ChatMessage } from "./chat-message";
 import { type ChatMessage as KVChatMessage } from "@/lib/kv";
+import { useAccount } from "wagmi";
 
 interface ChatPanelProps {
   chatId: string;
@@ -41,6 +42,7 @@ export function ChatPanel(props: ChatPanelProps) {
     initialMessages = [],
   } = props;
   const [copied, setCopied] = useState(false);
+  const { address, isConnected } = useAccount();
 
   const { messages, input, setInput, handleSubmit, status } = useChat({
     api: "/api/chat",
@@ -148,12 +150,21 @@ export function ChatPanel(props: ChatPanelProps) {
         >
           <PromptInputTextarea
             className="text-foreground"
-            placeholder="Ask about your terms or request changes..."
+            placeholder={
+              isConnected
+                ? "Ask about your terms or request changes..."
+                : "Please connect your wallet to use the chat..."
+            }
+            disabled={!isConnected}
           />
           <PromptInputActions className="justify-end pt-2">
             <PromptInputAction
               tooltip={
-                status === "streaming" ? "Please wait..." : "Send message"
+                !isConnected
+                  ? "Connect wallet to send messages"
+                  : status === "streaming"
+                  ? "Please wait..."
+                  : "Send message"
               }
             >
               <Button
@@ -161,7 +172,9 @@ export function ChatPanel(props: ChatPanelProps) {
                 size="icon"
                 className="size-8 rounded-full"
                 type="submit"
-                disabled={status === "streaming" || !input.trim()}
+                disabled={
+                  !isConnected || status === "streaming" || !input.trim()
+                }
                 onClick={handleSubmit}
               >
                 {status === "streaming" ? (
