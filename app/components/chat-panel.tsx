@@ -2,10 +2,7 @@
 
 import { Analysis } from "@/app/analyzer/analyze";
 import { Button } from "@/components/ui/button";
-import {
-  ChatContainerContent,
-  ChatContainerRoot,
-} from "@/components/ui/chat-container";
+import { ChatContainerContent, ChatContainerRoot } from "@/components/ui/chat-container";
 import { Loader } from "@/components/ui/loader";
 import {
   PromptInput,
@@ -34,15 +31,9 @@ interface ChatPanelProps {
 }
 
 export function ChatPanel(props: ChatPanelProps) {
-  const {
-    chatId,
-    terms,
-    onTermsUpdate,
-    analysis,
-    initialMessages = [],
-  } = props;
+  const { chatId, terms, onTermsUpdate, analysis, initialMessages = [] } = props;
   const [copied, setCopied] = useState(false);
-  const { address, isConnected } = useAccount();
+  const { isConnected } = useAccount();
 
   const { messages, input, setInput, handleSubmit, status } = useChat({
     api: "/api/chat",
@@ -93,9 +84,7 @@ export function ChatPanel(props: ChatPanelProps) {
             />
             <div>
               <h2 className="text-xl font-bold">Revnet Wizard</h2>
-              <p className="text-sm text-muted-foreground">
-                Ask questions and modify your terms
-              </p>
+              <p className="text-sm text-muted-foreground">Ask questions and modify your terms</p>
             </div>
           </div>
           {messages.length > 0 && (
@@ -113,7 +102,7 @@ export function ChatPanel(props: ChatPanelProps) {
               ) : (
                 <>
                   <Share2 className="h-4 w-4" />
-                  Share Chat
+                  Share
                 </>
               )}
             </Button>
@@ -126,11 +115,9 @@ export function ChatPanel(props: ChatPanelProps) {
           <ChatContainerContent className="p-6 space-y-6">
             {messages.map((message, i) => (
               <ChatMessage
-                key={message.id}
+                key={message.id || message.content}
                 message={message}
-                isStreaming={
-                  status === "streaming" && i === messages.length - 1
-                }
+                isStreaming={status === "streaming" && i === messages.length - 1}
               />
             ))}
           </ChatContainerContent>
@@ -149,7 +136,7 @@ export function ChatPanel(props: ChatPanelProps) {
           className="w-full bg-card"
         >
           <PromptInputTextarea
-            className="text-foreground"
+            className="text-foreground max-sm:text-sm"
             placeholder={
               isConnected
                 ? "Ask about your terms or request changes..."
@@ -172,9 +159,7 @@ export function ChatPanel(props: ChatPanelProps) {
                 size="icon"
                 className="size-8 rounded-full"
                 type="submit"
-                disabled={
-                  !isConnected || status === "streaming" || !input.trim()
-                }
+                disabled={!isConnected || status === "streaming" || !input.trim()}
                 onClick={handleSubmit}
               >
                 {status === "streaming" ? (

@@ -5,21 +5,12 @@ import { useEffect, useState } from "react";
 import { Analysis } from "@/app/analyzer/analyze";
 import { ChatPanel } from "@/app/components/chat-panel";
 import { TermsPanel } from "@/app/components/terms-panel";
-import {
-  getTranscript,
-  getChatMetadata,
-  updateChatTerms,
-  type ChatMessage,
-} from "@/lib/kv";
+import { getTranscript, getChatMetadata, updateChatTerms, type ChatMessage } from "@/lib/kv";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { use } from "react";
 
-export default function ChatPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+export default function ChatPage({ params }: { params: Promise<{ id: string }> }) {
   const [terms, setTerms] = useState<RevnetTerms>({ stages: [] });
   const [analysis, setAnalysis] = useState<Analysis | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -60,8 +51,7 @@ export default function ChatPage({
             summary: "Loaded from existing chat",
             questions: [],
             userDescription: "Continuing previous conversation",
-            initialMessage:
-              "Welcome back! You can continue working on your revnet terms.",
+            initialMessage: "Welcome back! You can continue working on your revnet terms.",
             error: null,
           });
         }
@@ -113,9 +103,7 @@ export default function ChatPage({
   };
 
   // Helper function to extract terms from messages
-  const extractTermsFromMessages = (
-    messages: ChatMessage[]
-  ): RevnetTerms | null => {
+  const extractTermsFromMessages = (messages: ChatMessage[]): RevnetTerms | null => {
     // Look through messages for tool calls that updated terms
     for (let i = messages.length - 1; i >= 0; i--) {
       const msg = messages[i];
@@ -151,10 +139,7 @@ export default function ChatPage({
           <p className="text-sm text-muted-foreground">
             Missing project analysis! Go back to the homepage and start again.
           </p>
-          <button
-            onClick={() => router.push("/")}
-            className="text-sm text-primary hover:underline"
-          >
+          <button onClick={() => router.push("/")} className="text-sm text-primary hover:underline">
             Go to homepage
           </button>
         </div>
@@ -163,12 +148,12 @@ export default function ChatPage({
   }
 
   return (
-    <div className="h-[calc(100vh-var(--header-height))] flex flex-col bg-background">
-      <div className="flex-1 flex overflow-hidden border-t">
-        <div className="w-1/2 border-r">
+    <div className="md:h-[calc(100vh-var(--header-height))] flex flex-col bg-background">
+      <div className="md:flex-1 md:flex overflow-hidden border-t">
+        <div className="w-full md:w-1/2 border-r">
           <TermsPanel terms={terms} />
         </div>
-        <div className="w-1/2">
+        <div className="w-full md:w-1/2 max-sm:max-h-screen max-sm:overflow-y-auto">
           <ChatPanel
             key={chatId} // Force remount when switching chats
             chatId={id}
